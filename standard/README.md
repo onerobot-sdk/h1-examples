@@ -2,21 +2,23 @@
 
 [返回示例索引](../README.md) · [智能版入口](../intelligent/README.md)
 
-本目录面向当前使用 **Cyclone DDS（`rmw_cyclonedds_cpp`）** 的 H1 标准版。基础环境为 Ubuntu 24.04 / ROS 2 Jazzy。示例是客户端，调用机器人已有接口；机器人对应服务需要事先运行。
+本目录面向 H1 标准版。推荐使用最新配套固件，基础环境为 Ubuntu 24.04 / ROS 2 Jazzy，通信方式为 **原生 Zenoh（`rmw_zenoh_cpp`）**。示例是客户端，调用机器人已有接口；机器人对应服务需要事先运行。
 
 ## 连接与环境
 
-开发电脑先完成 [ROS 2 Jazzy 安装](https://onerobot-sdk.github.io/onerobot-H1/getting-started/ros2-installation.html)，连接机器人所在网络，再按 [Python 控制说明中的 DDS 配置](python-control/README.md#电脑端-ros-2-与-dds-配置)准备终端。当前默认接入不需要单独设置 `ROS_DOMAIN_ID`；不要把机器人内部的网卡名和 `CYCLONEDDS_URI` 路径复制到开发电脑。
+建议先查询[设备固件版本](https://onerobot-sdk.github.io/onerobot-H1/firmware.html)，并按[OTA 说明](https://onerobot-sdk.github.io/onerobot-H1/faq/network-ota.html#q17)升级到最新配套固件。开发电脑完成 [ROS 2 Jazzy 安装](https://onerobot-sdk.github.io/onerobot-H1/getting-started/ros2-installation.html)，连接机器人所在网络，再按 [Python 控制说明](python-control/README.md#电脑端-ros-2-通信配置)准备通信环境。
 
-在已安装 Cyclone DDS 支持包的开发电脑 Bash 终端中：
+先完成[开发电脑的 Zenoh 配置](https://onerobot-sdk.github.io/onerobot-H1/getting-started/communication.html#pc-zenoh)，包括支持包、router 与环境文件；仅修改 `RMW_IMPLEMENTATION` 不足以完成连接。配置完成后，在电脑的运行终端执行：
 
 ```bash
-source /opt/ros/jazzy/setup.bash
-export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+source ~/h1-zenoh-env.sh
+ros2 daemon stop
 ros2 topic list
 ```
 
-确认能看到 `/device_info` 等机器人话题。若此前使用其他中间件，先退出旧示例并按 DDS 配置说明刷新电脑端 ROS 2 CLI daemon。机器人本机运行时使用设备交付的 ROS 环境与通信配置。
+确认能看到 `/device_info` 等机器人话题，再按通信配置页订阅数据检查连接。若此前使用其他中间件，先退出电脑上的旧示例或 RViz2，再加载环境。机器人本机运行时使用设备交付的 ROS 环境与通信配置。
+
+暂时无法升级的标准版，可查看 Python 使用说明中的[兼容配置](python-control/README.md#电脑端-ros-2-与-dds-配置)。
 
 ## Python 控制
 

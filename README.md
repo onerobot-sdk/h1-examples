@@ -4,12 +4,14 @@
 
 ## 先选择产品版本
 
-| 产品版本 | 当前通信方式 | 示例入口 |
+| 产品版本 | 通信方式（推荐固件） | 示例入口 |
 | --- | --- | --- |
-| H1 标准版 | ROS 2 Jazzy + Cyclone DDS（`rmw_cyclonedds_cpp`） | [标准版运行说明](standard/README.md)；基础 Python 与 MoveIt2 示例归入标准版 |
+| H1 标准版 | ROS 2 Jazzy + 原生 Zenoh（`rmw_zenoh_cpp`） | [标准版运行说明](standard/README.md)；基础 Python 与 MoveIt2 示例归入标准版 |
 | H1 智能版 | ROS 2 Jazzy + 原生 Zenoh（`rmw_zenoh_cpp`） | [智能版连接与示例说明](intelligent/README.md)；[NVIDIA 计算板洗衣应用](intelligent/laundry/README.md) |
 
-两种版本的接入环境不同。标准版源码尚未标记为智能版兼容示例，不能仅修改 `RMW_IMPLEMENTATION` 就认为已经完成适配。
+建议先将机器人升级到[最新配套固件](https://onerobot-sdk.github.io/onerobot-H1/firmware.html)，标准版和智能版统一按[原生 Zenoh 通信配置](https://onerobot-sdk.github.io/onerobot-H1/getting-started/communication.html)准备电脑。浏览器打开 `http://<机器人 IP>:8080/`，在“状态 → 机器人信息 → 软件版本”查看已安装版本；升级操作见[网络配置与 OTA](https://onerobot-sdk.github.io/onerobot-H1/faq/network-ota.html#q17)。
+
+示例仍按产品和应用需求分类。通信方式统一不代表标准版源码已经完成智能版适配；复用前仍需核对接口、模型、依赖服务和运行位置。
 
 ## 获取示例与运行包
 
