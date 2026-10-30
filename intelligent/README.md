@@ -10,10 +10,10 @@ H1 智能版由 RK3576 主控与 NVIDIA 计算板组成，当前使用 ROS 2 Jaz
 
 1. 阅读[双板连接与地址说明](https://onerobot-sdk.github.io/onerobot-H1/getting-started/intelligent.html#connection)，确认开发电脑、RK3576 和 NVIDIA 计算板的连接关系。
 2. 按[登录说明](https://onerobot-sdk.github.io/onerobot-H1/getting-started/intelligent.html#login)登录 RK3576，查询 NVIDIA 计算板的实际 IP 后继续登录。
-3. 按[开发电脑的 Zenoh 环境](https://onerobot-sdk.github.io/onerobot-H1/getting-started/intelligent.html#pc-zenoh)配置电脑 router 与终端环境。板端继续使用设备交付配置。
-4. 完成[通信验证](https://onerobot-sdk.github.io/onerobot-H1/getting-started/intelligent.html#verify)，再准备目标应用的依赖。
+3. 按[开发电脑的 Zenoh 环境](https://onerobot-sdk.github.io/onerobot-H1/getting-started/communication.html#pc-zenoh)配置电脑 router 与终端环境。板端继续使用设备交付配置。
+4. 完成[通信验证](https://onerobot-sdk.github.io/onerobot-H1/getting-started/communication.html#verify)，再准备目标应用的依赖。
 
-版本差异见[产品版本与开发路径](https://onerobot-sdk.github.io/onerobot-H1/getting-started/editions.html)。
+建议使用[最新配套固件](https://onerobot-sdk.github.io/onerobot-H1/firmware.html)，升级步骤见[网络配置与 OTA](https://onerobot-sdk.github.io/onerobot-H1/faq/network-ota.html#q17)。产品硬件与开发路径差异见[产品版本与开发路径](https://onerobot-sdk.github.io/onerobot-H1/getting-started/editions.html)。
 
 ## 洗衣服场景示例
 
@@ -27,6 +27,6 @@ H1 智能版由 RK3576 主控与 NVIDIA 计算板组成，当前使用 ROS 2 Jaz
 
 洗衣应用面向 H1 智能版配套的 NVIDIA 计算板，目标环境为 Ubuntu 24.04 ARM64 / ROS 2 Jazzy，使用原生 Zenoh。更换设备或场景后，需重新核对相机标定、地图和动作参数，并按部署说明完成单步检查。
 
-`standard/` 中的源码和 Cyclone DDS 配置仍属于标准版；它们尚未作为智能版兼容示例发布。复用接口代码时，需要核对目标设备的接口、消息类型、依赖服务和运行位置。
+`standard/` 中的源码按标准版接口整理。通信方式统一不代表这些示例已完成智能版适配；复用接口代码时，仍需核对目标设备的接口、消息类型、依赖服务和运行位置。
 
 其余接口命令和代码片段仍可在 [H1 开发手册](https://onerobot-sdk.github.io/onerobot-H1/)中查阅。[LeRobot 适配器](https://github.com/OpenWonderLabs/onero_lerobot)由独立仓库维护，其适用通信环境与运行条件以该项目说明为准。

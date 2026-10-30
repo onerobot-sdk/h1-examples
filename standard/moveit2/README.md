@@ -2,7 +2,7 @@
 
 本目录包含完整 ROS 2 包 [`onero_moveit_examples`](./onero_moveit_examples/)，演示双臂规划、读取服务端模型参数，以及执行已审查的规划轨迹。
 
-按标准版现有接口整理。智能版使用前还需核对 Zenoh 通信、服务端 MoveIt 配置和关节反馈，当前不声明已完成智能版验证。
+按标准版现有接口整理，推荐使用最新配套固件与原生 Zenoh。智能版使用前仍需核对服务端 MoveIt 配置和关节反馈，当前不声明已完成智能版验证。
 
 ## 文件与用途
 
@@ -20,7 +20,7 @@
 - 现有手册记录的验证范围为 ARM64 / x86_64 客户端编译、规划和模拟执行；不代表真机运动已经验证。
 - 示例依赖 **A1 双臂 MoveIt 配置**：规划组为 `left_arm`、`right_arm`、`both_arms`，关节为 `joint1-l` 至 `joint7-l`、`joint1-r` 至 `joint7-r`，末端为 `left_link7`、`right_link7`。不能替换为 H1 v1.4 整机显示模型中的名称。
 - 机器人端需先启动对应的 MoveIt 服务和真实关节反馈。本包只运行客户端，不启动驱动、MoveIt 服务或 fake joint states。
-- 开发电脑按[标准版使用说明](../python-control/README.md#电脑端-ros-2-与-dds-配置)准备 DDS；客户端与机器人使用一致的 ROS 域、中间件和系统时间。
+- 建议先查询[固件版本](https://onerobot-sdk.github.io/onerobot-H1/firmware.html)，并按[OTA 说明](https://onerobot-sdk.github.io/onerobot-H1/faq/network-ota.html#q17)升级到最新配套固件。开发电脑按[原生 Zenoh 配置](https://onerobot-sdk.github.io/onerobot-H1/getting-started/communication.html#pc-zenoh)准备通信环境；客户端与机器人使用一致的 ROS 域、中间件和系统时间。
 - Humble 的高级 C++ API 需要适配；其他平台尚未验证。
 
 完整接口说明和规划参数见[开发手册：MoveIt2](https://onerobot-sdk.github.io/onerobot-H1/advanced/moveit2.html)。
